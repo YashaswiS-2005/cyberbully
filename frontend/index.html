@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyberbullying Detection</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Cyberbullying Detection</h1>
+        <p>Enter a message and detect whether it is <strong>bullying</strong>, <strong>offensive</strong>, or <strong>neutral</strong>.</p>
+
+        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+        <button id="predictBtn">Analyze Message</button>
+
+        <div id="result" class="hidden">
+            <h2>Prediction Result</h2>
+            <p><strong>Label:</strong> <span id="predictionLabel"></span></p>
+            <p><strong>Confidence:</strong> <span id="confidenceScore"></span>%</p>
+        </div>
+
+        <div id="stats" class="stats hidden">
+            <h2>Prediction Counts</h2>
+            <p>Bullying: <span id="bullyingCount">0</span></p>
+            <p>Offensive: <span id="offensiveCount">0</span></p>
+            <p>Neutral: <span id="neutralCount">0</span></p>
+            <p>Total predictions: <span id="totalCount">0</span></p>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
