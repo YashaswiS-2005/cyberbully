@@ -1,2 +1,9 @@
 timestamp,text,prediction,confidence
 2026-04-20T14:27:26.582529,You are stupid,bullying,41.20
+2026-04-27T08:28:11.110109,hi,neutral,56.47
+2026-04-27T08:28:23.381879,stupid,bullying,41.20
+2026-04-27T08:31:16.265309,I don't care about your feelings,offensive,41.20
+2026-04-27T08:33:33.923441,hi,neutral,56.47
+2026-04-27T08:33:36.688145,hi,neutral,56.47
+2026-04-27T08:33:56.594152,stupid,bullying,41.20
+2026-04-27T10:19:59.842754,You are stupid,bullying,41.20

@@ -3,32 +3,161 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cyberbullying Detection</title>
+    <title>Cyberbullying Detection System</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Cyberbullying Detection</h1>
-        <p>Enter a message and detect whether it is <strong>bullying</strong>, <strong>offensive</strong>, or <strong>neutral</strong>.</p>
+    <div class="app-container">
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="analyze">Analyze Text</button>
+            <button class="tab-btn" data-tab="feed">Live Feed</button>
+            <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+        </nav>
 
-        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
-        <button id="predictBtn">Analyze Message</button>
+        <!-- Tab Content: Analyze Text -->
+        <section id="analyze-tab" class="tab-content active">
+            <div class="analyze-container">
+                <h1>Text Analysis</h1>
+                <p class="subtitle">Enter a message to detect whether it is <strong>bullying</strong>, <strong>offensive</strong>, or <strong>neutral</strong>.</p>
 
-        <div id="result" class="hidden">
-            <h2>Prediction Result</h2>
-            <p><strong>Label:</strong> <span id="predictionLabel"></span></p>
-            <p><strong>Confidence:</strong> <span id="confidenceScore"></span>%</p>
-        </div>
+                <div class="input-group">
+                    <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+                    <button id="predictBtn" class="btn-primary">Analyze Message</button>
+                </div>
 
-        <div id="stats" class="stats hidden">
-            <h2>Prediction Counts</h2>
-            <p>Bullying: <span id="bullyingCount">0</span></p>
-            <p>Offensive: <span id="offensiveCount">0</span></p>
-            <p>Neutral: <span id="neutralCount">0</span></p>
-            <p>Total predictions: <span id="totalCount">0</span></p>
-        </div>
+                <!-- Result Display -->
+                <div id="result" class="result-box hidden">
+                    <div class="result-header">
+                        <h2>Prediction Result</h2>
+                        <span id="resultBadge" class="badge"></span>
+                    </div>
+                    <div class="result-details">
+                        <p><strong>Label:</strong> <span id="predictionLabel"></span></p>
+                        <p><strong>Confidence:</strong> <span id="confidenceScore"></span>%</p>
+                    </div>
+                </div>
 
-        <div id="error" class="error hidden"></div>
+                <!-- Alert Warning -->
+                <div id="alertBox" class="alert-box hidden">
+                    <span class="alert-icon">⚠️</span>
+                    <span id="alertMessage">Warning: This content may be harmful</span>
+                </div>
+
+                <!-- Error Display -->
+                <div id="error" class="error-box hidden"></div>
+            </div>
+        </section>
+
+        <!-- Tab Content: Live Feed -->
+        <section id="feed-tab" class="tab-content">
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h1>Live Feed</h1>
+                    <button id="refreshFeedBtn" class="btn-secondary">🔄 Refresh</button>
+                </div>
+                
+                <p class="subtitle">Simulated social media comments with automatic toxicity detection.</p>
+
+                <!-- Feed Stats Bar -->
+                <div class="feed-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="feedTotal">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item toxic">
+                        <span class="stat-value" id="feedToxic">0</span>
+                        <span class="stat-label">Toxic</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="feedRate">0%</span>
+                        <span class="stat-label">Toxicity</span>
+                    </div>
+                </div>
+
+                <!-- Feed Alert -->
+                <div id="feedAlert" class="alert-box hidden">
+                    <span class="alert-icon">⚠️</span>
+                    <span>Warning: This content may be harmful</span>
+                </div>
+
+                <!-- Feed Posts -->
+                <div id="feedPosts" class="feed-posts">
+                    <!-- Posts will be dynamically inserted here -->
+                </div>
+
+                <!-- Loading State -->
+                <div id="feedLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Loading feed...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Content: Dashboard -->
+        <section id="dashboard-tab" class="tab-content">
+            <div class="dashboard-container">
+                <h1>Dashboard</h1>
+                <p class="subtitle">Overview of cyberbullying detection analytics.</p>
+
+                <!-- Dashboard Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashTotal">0</span>
+                            <span class="stat-label">Total Comments</span>
+                        </div>
+                    </div>
+                    <div class="stat-card toxic-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashToxic">0</span>
+                            <span class="stat-label">Toxic Comments</span>
+                        </div>
+                    </div>
+                    <div class="stat-card neutral-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashSafe">0</span>
+                            <span class="stat-label">Safe Comments</span>
+                        </div>
+                    </div>
+                    <div class="stat-card percentage-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashPercentage">0%</span>
+                            <span class="stat-label">Toxicity Rate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breakdown Cards -->
+                <div class="breakdown-grid">
+                    <div class="breakdown-card bullying">
+                        <h3>Bullying</h3>
+                        <span class="breakdown-value" id="dashBullying">0</span>
+                    </div>
+                    <div class="breakdown-card offensive">
+                        <h3>Offensive</h3>
+                        <span class="breakdown-value" id="dashOffensive">0</span>
+                    </div>
+                    <div class="breakdown-card neutral">
+                        <h3>Neutral</h3>
+                        <span class="breakdown-value" id="dashNeutral">0</span>
+                    </div>
+                </div>
+
+                <!-- Dashboard Alert -->
+                <div id="dashAlert" class="alert-box hidden">
+                    <span class="alert-icon">⚠️</span>
+                    <span id="dashAlertMessage">Warning: This content may be harmful</span>
+                </div>
+
+                <!-- Refresh Button -->
+                <button id="refreshDashBtn" class="btn-secondary">🔄 Refresh Dashboard</button>
+            </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
