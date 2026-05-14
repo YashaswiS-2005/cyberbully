@@ -30,9 +30,20 @@ def build_pipeline() -> Pipeline:
                 tokenizer=tokenize_text,
                 lowercase=False,
                 ngram_range=(1, 2),
+                max_df=0.95,
+                min_df=1,
+                max_features=20000,
             ),
         ),
-        ("classifier", LogisticRegression(max_iter=500, solver="lbfgs")),
+        (
+            "classifier",
+            LogisticRegression(
+                max_iter=1000,
+                solver="lbfgs",
+                class_weight="balanced",
+                random_state=42,
+            ),
+        ),
     ])
 
 

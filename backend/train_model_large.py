@@ -50,13 +50,14 @@ class LargeDatasetTrainer:
             "lowercase": False,
             "ngram_range": (1, 2),
             "max_features": 50000,
-            "min_df": 2,
-            "max_df": 0.95
+            "min_df": 1,
+            "max_df": 0.95,
         }
         self.classifier_params = classifier_params or {
             "max_iter": 1000,
             "tol": 1e-4,
-            "random_state": 42
+            "random_state": 42,
+            "class_weight": "balanced",
         }
         self.pipeline = None
         self.training_stats = {}
@@ -80,7 +81,7 @@ class LargeDatasetTrainer:
         else:
             from sklearn.linear_model import LogisticRegression
             classifier = LogisticRegression(
-                max_iter=500,
+                max_iter=1000,
                 solver="lbfgs",
                 **self.classifier_params
             )

@@ -7,3 +7,12 @@ timestamp,text,prediction,confidence
 2026-04-27T08:33:36.688145,hi,neutral,56.47
 2026-04-27T08:33:56.594152,stupid,bullying,41.20
 2026-04-27T10:19:59.842754,You are stupid,bullying,41.20
+2026-04-27T10:28:35.976654,hi,neutral,56.47
+2026-04-27T10:28:44.372108,idiot,offensive,41.20
+2026-05-11T16:51:41.637679,hi,neutral,56.47
+2026-05-11T16:51:52.444670,worst,neutral,49.45
+2026-05-11T16:52:24.366045,stupid,bullying,41.20
+2026-05-12T15:44:22.202680,you are stupid and useless,bullying,97.85
+2026-05-12T15:44:25.173263,you are stupid and useless,bullying,97.85
+2026-05-13T13:25:42.029421,you are stupid,bullying,97.85
+2026-05-13T13:25:45.089268,you are stupid,bullying,97.85

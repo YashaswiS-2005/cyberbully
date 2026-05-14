@@ -37,6 +37,11 @@ class SocialMediaCollector(ABC):
         """Fetch comments for a specific post."""
         pass
 
+    @abstractmethod
+    def fetch_reposts(self, post_id: str, limit: int = 100) -> List[Dict[str, Any]]:
+        """Fetch reposts of a specific post."""
+        pass
+
     def save_to_csv(self, filepath: str, platform: str):
         """Save collected data to CSV file."""
         if self.collected_data:
@@ -138,6 +143,34 @@ class TwitterCollector(SocialMediaCollector):
         self.collected_data.extend(comments)
         return comments
 
+    def fetch_retweets(self, post_id: str, limit: int = 100) -> List[Dict[str, Any]]:
+        """Fetch retweets of a specific tweet."""
+        if not self.client:
+            raise RuntimeError("Not authenticated. Call authenticate() first.")
+
+        retweets = []
+        try:
+            response = self.client.get_retweeters(
+                post_id,
+                max_results=min(limit, 100),
+                user_fields=["username", "name"]
+            )
+            
+            if response.data:
+                for user in response.data:
+                    retweets.append({
+                        "user_id": user.id,
+                        "username": user.username,
+                        "name": user.name,
+                        "original_post_id": post_id
+                    })
+            logger.info(f"Fetched {len(retweets)} retweets for post: {post_id}")
+        except Exception as e:
+            logger.error(f"Error fetching retweets: {e}")
+
+        self.collected_data.extend(retweets)
+        return retweets
+
 
 class RedditCollector(SocialMediaCollector):
     """Collector for Reddit posts and comments."""
@@ -220,6 +253,28 @@ class RedditCollector(SocialMediaCollector):
         self.collected_data.extend(comments)
         return comments
 
+    def fetch_crossposts(self, post_id: str, limit: int = 100) -> List[Dict[str, Any]]:
+        """Fetch crossposts of a specific Reddit post."""
+        if not self.reddit:
+            raise RuntimeError("Not authenticated. Call authenticate() first.")
+
+        crossposts = []
+        try:
+            submission = self.reddit.submission(id=post_id)
+            # Note: PRAW doesn't directly support fetching crossposts, this is a placeholder
+            # In practice, you might need to search for the post title in other subreddits
+            crossposts.append({
+                "original_post_id": post_id,
+                "title": submission.title,
+                "subreddit": str(submission.subreddit)
+            })
+            logger.info(f"Fetched {len(crossposts)} crossposts for post: {post_id}")
+        except Exception as e:
+            logger.error(f"Error fetching crossposts: {e}")
+
+        self.collected_data.extend(crossposts)
+        return crossposts
+
 
 class GenericAPICollector(SocialMediaCollector):
     """Collector for generic REST APIs (Facebook, Instagram, etc.)."""
@@ -286,6 +341,25 @@ class GenericAPICollector(SocialMediaCollector):
 
         self.collected_data.extend(comments)
         return comments
+
+    def fetch_reposts(self, post_id: str, limit: int = 100) -> List[Dict[str, Any]]:
+        """Fetch reposts from generic API."""
+        reposts = []
+        try:
+            response = requests.get(
+                f"{self.base_url}/posts/{post_id}/reposts",
+                headers=self.headers,
+                params={"limit": limit},
+                timeout=30
+            )
+            if response.status_code == 200:
+                data = response.json()
+                reposts = data.get("data", [])
+        except Exception as e:
+            logger.error(f"Error fetching reposts: {e}")
+
+        self.collected_data.extend(reposts)
+        return reposts
 
 
 def create_collector(platform: str, config: Dict[str, Any]) -> SocialMediaCollector:

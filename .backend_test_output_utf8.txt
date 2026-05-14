@@ -1,0 +1,175 @@
+python : Traceback (most recent call last):
+At line:1 char:51
++ ... yberbully'; python -c "import sys; sys.path.insert(0, 'D:\\cyberbully ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 3269, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 1255, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\impl.py", line 168, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\impl.py", line 166, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\create.py", line 640, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\default.py", line 580, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 
+5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection 
+refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\cyberbullying\cyberbully\backend\app.py", line 61, in <module>
+    Base.metadata.create_all(bind=engine)
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\sql\schema.py", line 5558, in create_all
+    bind._run_ddl_visitor(
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 3219, in _run_ddl_visitor
+    with self.begin() as conn:
+  File 
+"C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", 
+line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 3209, in begin
+    with self.connect() as conn:
+         ^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 3245, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 147, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 2410, in 
+_handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\base.py", line 3269, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 1255, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 716, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\impl.py", line 168, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\impl.py", line 166, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 678, in __init__
+    self.__connect()
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\util\langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\pool\base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\create.py", line 640, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\sqlalchemy\engine\default.py", line 580, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hcpra\AppData\Local\Programs\Python\Python312\Lib\site-package
+s\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to 
+server at "localhost" (::1), port 5432 failed: Connection refused 
+(0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection 
+refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

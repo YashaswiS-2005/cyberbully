@@ -41,14 +41,34 @@ python -m backend.app
 
 - Visit: `http://127.0.0.1:5000/`
 
+## Email Alerts
+
+The system can send email alerts when bullying content is detected:
+
+1. **Configure Email Settings**: Copy `.env.example` to `.env` and fill in your email credentials
+2. **Set Email Address**: Go to Settings page and enter your email address
+3. **Receive Alerts**: When bullying content is detected with high confidence, you'll receive an email notification
+
+### Email Configuration
+
+For Gmail users:
+- Enable 2-factor authentication
+- Generate an App Password: https://support.google.com/accounts/answer/185833
+- Use your Gmail address as `MAIL_USERNAME`
+- Use the App Password as `MAIL_PASSWORD`
+
 ## API Endpoints
 
 - `POST /predict`
   - Request JSON: `{ "text": "Your message here" }`
   - Response JSON: `{ "prediction": "bullying", "confidence": 85.12 }`
+  - **New**: Sends email alert if bullying detected and user has email configured
 
 - `GET /stats`
   - Response JSON: counts of logged predictions
+
+- `GET /settings`
+  - User settings page for email configuration
 
 ## Example Usage
 

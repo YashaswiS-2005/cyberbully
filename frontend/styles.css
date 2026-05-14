@@ -51,6 +51,40 @@ body {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
+.logout-btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #dc3545;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+}
+
+.settings-btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0a0a0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #e8e8e8;
+}
+
 /* ============================================
    Tab Content
    ============================================ */
